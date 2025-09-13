@@ -1,0 +1,32 @@
+# Backend files
+app.py
+run.py
+requirements.txt
+instance/
+uploads/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+.env
+env.example
+
+# Development files
+start.bat
+start.sh
+test_setup.py
+DEPLOYMENT.md
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
