@@ -94,9 +94,17 @@ const MessageRenderer = ({ text, isUser }) => {
 const ChatContainer = styled.div`
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 2rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
+  
+  @media (min-width: 768px) {
+    padding: 1.5rem;
+  }
+  
+  @media (min-width: 1024px) {
+    padding: 2rem;
+  }
 `;
 
 const Container = styled.div`
@@ -105,47 +113,73 @@ const Container = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
+  padding: 0 0.5rem;
+  
+  @media (min-width: 768px) {
+    padding: 0 1rem;
+  }
 `;
 
 const Header = styled(motion.div)`
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
-  border-radius: 20px 20px 0 0;
-  padding: 2rem;
+  border-radius: 16px 16px 0 0;
+  padding: 1.5rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-bottom: none;
+  
+  @media (min-width: 768px) {
+    border-radius: 20px 20px 0 0;
+    padding: 2rem;
+  }
 `;
 
 const Title = styled.h1`
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: #333;
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
+  
+  @media (min-width: 768px) {
+    font-size: 2rem;
+    gap: 1rem;
+  }
 `;
 
 const Controls = styled.div`
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
   align-items: center;
   flex-wrap: wrap;
+  
+  @media (min-width: 768px) {
+    gap: 1rem;
+  }
 `;
 
 const LanguageSelect = styled.select`
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.75rem;
   border: 2px solid #e9ecef;
-  border-radius: 10px;
+  border-radius: 8px;
   background: white;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   cursor: pointer;
   transition: border-color 0.3s ease;
+  min-height: 44px;
 
   &:focus {
     outline: none;
     border-color: #667eea;
+  }
+  
+  @media (min-width: 768px) {
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
   }
 `;
 
@@ -153,14 +187,15 @@ const ActionButton = styled.button`
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
-  font-size: 0.9rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  min-height: 44px;
 
   &:hover {
     transform: translateY(-2px);
@@ -172,89 +207,136 @@ const ActionButton = styled.button`
     cursor: not-allowed;
     transform: none;
   }
+  
+  @media (min-width: 768px) {
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+  }
 `;
 
 const ChatArea = styled.div`
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
-  border-radius: 0 0 20px 20px;
+  border-radius: 0 0 16px 16px;
   flex: 1;
   display: flex;
   flex-direction: column;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-top: none;
+  
+  @media (min-width: 768px) {
+    border-radius: 0 0 20px 20px;
+  }
 `;
 
 const MessagesContainer = styled.div`
   flex: 1;
-  padding: 2rem;
+  padding: 1rem;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  max-height: 60vh;
+  gap: 0.75rem;
+  max-height: 50vh;
+  
+  @media (min-width: 768px) {
+    padding: 2rem;
+    gap: 1rem;
+    max-height: 60vh;
+  }
 `;
 
 const Message = styled(motion.div)`
   display: flex;
   align-items: flex-start;
-  gap: 1rem;
+  gap: 0.75rem;
   ${props => props.isUser && 'flex-direction: row-reverse;'}
+  
+  @media (min-width: 768px) {
+    gap: 1rem;
+  }
 `;
 
 const MessageAvatar = styled.div`
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: white;
   background: ${props => props.isUser ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : '#28a745'};
   flex-shrink: 0;
+  
+  @media (min-width: 768px) {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
 `;
 
 const MessageContent = styled.div`
-  max-width: 70%;
-  padding: 1rem 1.5rem;
-  border-radius: 20px;
+  max-width: 85%;
+  padding: 0.75rem 1rem;
+  border-radius: 16px;
   background: ${props => props.isUser ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : '#f8f9fa'};
   color: ${props => props.isUser ? 'white' : '#333'};
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   word-wrap: break-word;
   line-height: 1.6;
+  font-size: 0.9rem;
+  
+  @media (min-width: 768px) {
+    max-width: 70%;
+    padding: 1rem 1.5rem;
+    border-radius: 20px;
+    font-size: 1rem;
+  }
 `;
 
 const MessageTime = styled.div`
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   opacity: 0.7;
-  margin-top: 0.5rem;
+  margin-top: 0.25rem;
   text-align: ${props => props.isUser ? 'right' : 'left'};
+  
+  @media (min-width: 768px) {
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+  }
 `;
 
 const InputArea = styled.div`
-  padding: 2rem;
+  padding: 1rem;
   border-top: 1px solid #e9ecef;
   background: rgba(248, 249, 250, 0.8);
+  
+  @media (min-width: 768px) {
+    padding: 2rem;
+  }
 `;
 
 const InputContainer = styled.div`
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
   align-items: flex-end;
+  
+  @media (min-width: 768px) {
+    gap: 1rem;
+  }
 `;
 
 const MessageInput = styled.textarea`
   flex: 1;
-  padding: 1rem 1.5rem;
+  padding: 0.75rem 1rem;
   border: 2px solid #e9ecef;
-  border-radius: 25px;
-  font-size: 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
   resize: none;
-  min-height: 50px;
-  max-height: 120px;
+  min-height: 44px;
+  max-height: 100px;
   transition: border-color 0.3s ease;
   font-family: inherit;
 
@@ -267,21 +349,29 @@ const MessageInput = styled.textarea`
   &::placeholder {
     color: #6c757d;
   }
+  
+  @media (min-width: 768px) {
+    padding: 1rem 1.5rem;
+    border-radius: 25px;
+    font-size: 1rem;
+    min-height: 50px;
+    max-height: 120px;
+  }
 `;
 
 const SendButton = styled.button`
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  width: 50px;
-  height: 50px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: 1.2rem;
+  font-size: 1rem;
 
   &:hover {
     transform: translateY(-2px);
@@ -293,15 +383,28 @@ const SendButton = styled.button`
     cursor: not-allowed;
     transform: none;
   }
+  
+  @media (min-width: 768px) {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
 `;
 
 const LoadingMessage = styled(motion.div)`
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 1rem;
+  gap: 0.75rem;
+  padding: 0.75rem;
   color: #6c757d;
   font-style: italic;
+  font-size: 0.9rem;
+  
+  @media (min-width: 768px) {
+    gap: 1rem;
+    padding: 1rem;
+    font-size: 1rem;
+  }
 `;
 
 const TypingIndicator = styled.div`
@@ -330,25 +433,41 @@ const Dot = styled.div`
 
 const EmptyState = styled(motion.div)`
   text-align: center;
-  padding: 3rem;
+  padding: 2rem;
   color: #6c757d;
+  
+  @media (min-width: 768px) {
+    padding: 3rem;
+  }
 `;
 
 const EmptyIcon = styled.div`
-  font-size: 4rem;
+  font-size: 3rem;
   margin-bottom: 1rem;
   opacity: 0.5;
+  
+  @media (min-width: 768px) {
+    font-size: 4rem;
+  }
 `;
 
 const EmptyTitle = styled.h3`
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   margin-bottom: 1rem;
   color: #495057;
+  
+  @media (min-width: 768px) {
+    font-size: 1.5rem;
+  }
 `;
 
 const EmptyDescription = styled.p`
-  font-size: 1rem;
+  font-size: 0.9rem;
   line-height: 1.6;
+  
+  @media (min-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 const Chat = () => {

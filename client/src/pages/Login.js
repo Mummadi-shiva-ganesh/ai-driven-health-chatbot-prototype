@@ -10,27 +10,36 @@ const LoginContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 1rem;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  
+  @media (min-width: 768px) {
+    padding: 2rem;
+  }
 `;
 
 const LoginCard = styled(motion.div)`
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: 3rem;
+  border-radius: 16px;
+  padding: 2rem;
   width: 100%;
   max-width: 400px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
+  
+  @media (min-width: 768px) {
+    border-radius: 20px;
+    padding: 3rem;
+  }
 `;
 
 const Logo = styled.div`
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   
   h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 700;
     color: #667eea;
     margin-bottom: 0.5rem;
@@ -40,12 +49,24 @@ const Logo = styled.div`
     color: #6c757d;
     font-size: 0.9rem;
   }
+  
+  @media (min-width: 768px) {
+    margin-bottom: 2rem;
+    
+    h1 {
+      font-size: 2rem;
+    }
+  }
 `;
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
+  
+  @media (min-width: 768px) {
+    gap: 1.5rem;
+  }
 `;
 
 const InputGroup = styled.div`
@@ -54,12 +75,13 @@ const InputGroup = styled.div`
 
 const Input = styled.input`
   width: 100%;
-  padding: 1rem 1rem 1rem 3rem;
+  padding: 0.875rem 0.875rem 0.875rem 2.75rem;
   border: 2px solid #e9ecef;
-  border-radius: 12px;
-  font-size: 1rem;
+  border-radius: 10px;
+  font-size: 16px; /* Prevents zoom on iOS */
   transition: all 0.3s ease;
   background: rgba(255, 255, 255, 0.8);
+  min-height: 44px;
 
   &:focus {
     outline: none;
@@ -70,38 +92,63 @@ const Input = styled.input`
   &.error {
     border-color: #dc3545;
   }
+  
+  @media (min-width: 768px) {
+    padding: 1rem 1rem 1rem 3rem;
+    border-radius: 12px;
+    font-size: 1rem;
+  }
 `;
 
 const InputIcon = styled.div`
   position: absolute;
-  left: 1rem;
+  left: 0.875rem;
   top: 50%;
   transform: translateY(-50%);
   color: #6c757d;
-  font-size: 1.1rem;
+  font-size: 1rem;
+  
+  @media (min-width: 768px) {
+    left: 1rem;
+    font-size: 1.1rem;
+  }
 `;
 
 const PasswordToggle = styled.button`
   position: absolute;
-  right: 1rem;
+  right: 0.875rem;
   top: 50%;
   transform: translateY(-50%);
   background: none;
   border: none;
   color: #6c757d;
   cursor: pointer;
-  font-size: 1.1rem;
+  font-size: 1rem;
   transition: color 0.3s ease;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:hover {
     color: #667eea;
+  }
+  
+  @media (min-width: 768px) {
+    right: 1rem;
+    font-size: 1.1rem;
   }
 `;
 
 const ErrorMessage = styled.div`
   color: #dc3545;
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   margin-top: 0.5rem;
+  
+  @media (min-width: 768px) {
+    font-size: 0.875rem;
+  }
 `;
 
 const Button = styled.button`

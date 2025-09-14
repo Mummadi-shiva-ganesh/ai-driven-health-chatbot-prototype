@@ -19,78 +19,169 @@ import axios from 'axios';
 const DashboardContainer = styled.div`
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 2rem;
+  padding: 1rem;
+  
+  @media (min-width: 768px) {
+    padding: 1.5rem;
+  }
+  
+  @media (min-width: 1024px) {
+    padding: 2rem;
+  }
 `;
 
 const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 0.5rem;
+  
+  @media (min-width: 768px) {
+    padding: 0 1rem;
+  }
 `;
 
 const Header = styled(motion.div)`
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   color: white;
+  
+  @media (min-width: 768px) {
+    margin-bottom: 2.5rem;
+  }
+  
+  @media (min-width: 1024px) {
+    margin-bottom: 3rem;
+  }
 `;
 
 const Title = styled.h1`
-  font-size: 2.5rem;
+  font-size: 1.8rem;
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
+  
+  @media (min-width: 768px) {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  @media (min-width: 1024px) {
+    font-size: 2.5rem;
+  }
 `;
 
 const Subtitle = styled.p`
-  font-size: 1.2rem;
+  font-size: 1rem;
   opacity: 0.9;
+  
+  @media (min-width: 768px) {
+    font-size: 1.1rem;
+  }
+  
+  @media (min-width: 1024px) {
+    font-size: 1.2rem;
+  }
 `;
 
 const StatsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-bottom: 3rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+  
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
 `;
 
 const StatCard = styled(motion.div)`
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: 2rem;
+  border-radius: 16px;
+  padding: 1.5rem;
   text-align: center;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
+  
+  @media (min-width: 768px) {
+    border-radius: 20px;
+    padding: 2rem;
+  }
 `;
 
 const StatIcon = styled.div`
-  font-size: 3rem;
-  margin-bottom: 1rem;
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
   color: #667eea;
+  
+  @media (min-width: 768px) {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  @media (min-width: 1024px) {
+    font-size: 3rem;
+  }
 `;
 
 const StatNumber = styled.div`
-  font-size: 2.5rem;
+  font-size: 1.8rem;
   font-weight: 700;
   color: #333;
   margin-bottom: 0.5rem;
+  
+  @media (min-width: 768px) {
+    font-size: 2.2rem;
+  }
+  
+  @media (min-width: 1024px) {
+    font-size: 2.5rem;
+  }
 `;
 
 const StatLabel = styled.div`
   color: #6c757d;
   font-weight: 500;
+  font-size: 0.8rem;
+  
+  @media (min-width: 768px) {
+    font-size: 0.9rem;
+  }
+  
+  @media (min-width: 1024px) {
+    font-size: 1rem;
+  }
 `;
 
 const QuickActions = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-bottom: 3rem;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  @media (min-width: 1024px) {
+    margin-bottom: 3rem;
+  }
 `;
 
 const ActionCard = styled(motion.div)`
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: 2rem;
+  border-radius: 16px;
+  padding: 1.5rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   cursor: pointer;
@@ -99,32 +190,53 @@ const ActionCard = styled(motion.div)`
   &:hover {
     transform: translateY(-5px);
   }
+  
+  @media (min-width: 768px) {
+    border-radius: 20px;
+    padding: 2rem;
+  }
 `;
 
 const ActionIcon = styled.div`
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
   color: #667eea;
+  
+  @media (min-width: 768px) {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const ActionTitle = styled.h3`
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   color: #333;
+  
+  @media (min-width: 768px) {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const ActionDescription = styled.p`
   color: #6c757d;
   line-height: 1.6;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  
+  @media (min-width: 768px) {
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+  }
 `;
 
 const ActionButton = styled.button`
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  padding: 12px 24px;
+  padding: 10px 20px;
   border-radius: 10px;
   font-weight: 600;
   cursor: pointer;
@@ -132,32 +244,55 @@ const ActionButton = styled.button`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-size: 0.9rem;
+  min-height: 44px;
 
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+  }
+  
+  @media (min-width: 768px) {
+    padding: 12px 24px;
+    font-size: 1rem;
   }
 `;
 
 const ProfileSection = styled(motion.div)`
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: 2rem;
+  border-radius: 16px;
+  padding: 1.5rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
+  
+  @media (min-width: 768px) {
+    border-radius: 20px;
+    padding: 2rem;
+  }
 `;
 
 const ProfileHeader = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  
+  @media (min-width: 768px) {
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: nowrap;
+  }
 `;
 
 const ProfileIcon = styled.div`
-  font-size: 3rem;
+  font-size: 2.5rem;
   color: #667eea;
+  
+  @media (min-width: 768px) {
+    font-size: 3rem;
+  }
 `;
 
 const ProfileInfo = styled.div`
@@ -165,16 +300,29 @@ const ProfileInfo = styled.div`
 `;
 
 const ProfileName = styled.h2`
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   font-weight: 700;
   color: #333;
   margin-bottom: 0.5rem;
+  
+  @media (min-width: 768px) {
+    font-size: 1.8rem;
+  }
 `;
 
 const ProfileDetails = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 `;
 
 const DetailItem = styled.div`
@@ -182,7 +330,11 @@ const DetailItem = styled.div`
   align-items: center;
   gap: 0.5rem;
   color: #6c757d;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
+  
+  @media (min-width: 768px) {
+    font-size: 0.9rem;
+  }
 `;
 
 const DetailIcon = styled.div`

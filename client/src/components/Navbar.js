@@ -29,28 +29,44 @@ const Nav = styled.nav`
 const NavContainer = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
+  @media (min-width: 768px) {
+    padding: 0 2rem;
+  }
+  
+  @media (min-width: 1024px) {
+    padding: 0 2rem;
+  }
 `;
 
 const Logo = styled(Link)`
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: #667eea;
   text-decoration: none;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  
+  @media (min-width: 768px) {
+    font-size: 1.5rem;
+  }
 `;
 
 const NavMenu = styled.div`
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
 
-  @media (max-width: 768px) {
+  @media (min-width: 768px) {
+    gap: 2rem;
+  }
+
+  @media (max-width: 767px) {
     position: fixed;
     top: 0;
     right: ${props => props.isOpen ? '0' : '-100%'};
@@ -62,6 +78,7 @@ const NavMenu = styled.div`
     justify-content: center;
     transition: right 0.3s ease;
     z-index: 1001;
+    padding: 2rem;
   }
 `;
 
@@ -69,12 +86,14 @@ const NavLink = styled(Link)`
   color: #495057;
   text-decoration: none;
   font-weight: 500;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.75rem;
   border-radius: 8px;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-size: 0.9rem;
+  min-height: 44px; /* Touch-friendly */
 
   &:hover {
     background: rgba(102, 126, 234, 0.1);
@@ -86,9 +105,18 @@ const NavLink = styled(Link)`
     color: #667eea;
   }
 
-  @media (max-width: 768px) {
-    font-size: 1.2rem;
-    padding: 1rem;
+  @media (min-width: 768px) {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 1.1rem;
+    padding: 1rem 1.5rem;
+    width: 100%;
+    justify-content: center;
+    border-radius: 12px;
+    margin: 0.5rem 0;
   }
 `;
 
@@ -96,7 +124,18 @@ const UserMenu = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
+  
+  @media (min-width: 768px) {
+    gap: 1rem;
+  }
+  
+  @media (max-width: 767px) {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 1002;
+  }
 `;
 
 const UserButton = styled.button`
@@ -110,10 +149,23 @@ const UserButton = styled.button`
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
+  min-width: 44px;
+  min-height: 44px;
 
   &:hover {
     background: rgba(102, 126, 234, 0.1);
     color: #667eea;
+  }
+  
+  @media (max-width: 767px) {
+    background: rgba(102, 126, 234, 0.9);
+    color: white;
+    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+    
+    &:hover {
+      background: rgba(102, 126, 234, 1);
+      transform: scale(1.05);
+    }
   }
 `;
 
@@ -173,8 +225,37 @@ const MobileToggle = styled.button`
   color: #495057;
   font-size: 1.5rem;
   cursor: pointer;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
 
-  @media (max-width: 768px) {
+  &:hover {
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+  }
+
+  @media (max-width: 767px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+`;
+
+const MobileOverlay = styled.div`
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  opacity: ${props => props.isOpen ? '1' : '0'};
+  visibility: ${props => props.isOpen ? 'visible' : 'hidden'};
+  transition: all 0.3s ease;
+
+  @media (max-width: 767px) {
     display: block;
   }
 `;
@@ -205,60 +286,66 @@ const Navbar = () => {
   ];
 
   return (
-    <Nav>
-      <NavContainer>
-        <Logo to="/">
-          🏥 HealthBot
-        </Logo>
+    <>
+      <MobileOverlay 
+        isOpen={isMobileMenuOpen} 
+        onClick={closeMobileMenu}
+      />
+      <Nav>
+        <NavContainer>
+          <Logo to="/">
+            🏥 HealthBot
+          </Logo>
 
-        {user ? (
-          <>
-            <NavMenu isOpen={isMobileMenuOpen}>
-              {navItems.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <NavLink
-                    key={item.path}
-                    to={item.path}
-                    className={location.pathname === item.path ? 'active' : ''}
-                    onClick={closeMobileMenu}
-                  >
-                    <Icon />
-                    {item.label}
-                  </NavLink>
-                );
-              })}
+          {user ? (
+            <>
+              <NavMenu isOpen={isMobileMenuOpen}>
+                {navItems.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <NavLink
+                      key={item.path}
+                      to={item.path}
+                      className={location.pathname === item.path ? 'active' : ''}
+                      onClick={closeMobileMenu}
+                    >
+                      <Icon />
+                      {item.label}
+                    </NavLink>
+                  );
+                })}
+              </NavMenu>
+
+              <UserMenu>
+                <UserButton onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}>
+                  <FaUserCircle size={24} />
+                </UserButton>
+                
+                <Dropdown isOpen={isUserMenuOpen}>
+                  <DropdownItem to="/profile" onClick={() => setIsUserMenuOpen(false)}>
+                    <FaUser />
+                    Profile
+                  </DropdownItem>
+                  <LogoutButton onClick={handleLogout}>
+                    <FaSignOutAlt />
+                    Logout
+                  </LogoutButton>
+                </Dropdown>
+              </UserMenu>
+
+              <MobileToggle onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+                {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
+              </MobileToggle>
+            </>
+          ) : (
+            <NavMenu>
+              <NavLink to="/login">Login</NavLink>
+              <NavLink to="/register">Register</NavLink>
             </NavMenu>
-
-            <UserMenu>
-              <UserButton onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}>
-                <FaUserCircle size={24} />
-              </UserButton>
-              
-              <Dropdown isOpen={isUserMenuOpen}>
-                <DropdownItem to="/profile" onClick={() => setIsUserMenuOpen(false)}>
-                  <FaUser />
-                  Profile
-                </DropdownItem>
-                <LogoutButton onClick={handleLogout}>
-                  <FaSignOutAlt />
-                  Logout
-                </LogoutButton>
-              </Dropdown>
-            </UserMenu>
-
-            <MobileToggle onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-              {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
-            </MobileToggle>
-          </>
-        ) : (
-          <NavMenu>
-            <NavLink to="/login">Login</NavLink>
-            <NavLink to="/register">Register</NavLink>
-          </NavMenu>
-        )}
-      </NavContainer>
-    </Nav>
+          )}
+        </NavContainer>
+      </Nav>
+    </>
   );
 };
 

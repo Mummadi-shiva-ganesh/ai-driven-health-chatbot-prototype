@@ -183,20 +183,317 @@ code {
   100% { transform: rotate(360deg); }
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
+/* Responsive Design System */
+
+/* Breakpoints:
+   - Mobile: 320px - 767px
+   - Tablet: 768px - 1023px  
+   - Desktop: 1024px+
+*/
+
+/* Mobile First Approach */
+/* Base styles are for mobile, then we enhance for larger screens */
+
+/* Mobile Styles (320px - 767px) */
+@media (max-width: 767px) {
   .btn {
-    padding: 10px 20px;
-    font-size: 13px;
+    padding: 10px 16px;
+    font-size: 14px;
+    min-height: 44px; /* Touch-friendly */
   }
   
   .card {
-    margin: 10px;
+    margin: 8px;
+    border-radius: 12px;
   }
   
   .card-header,
   .card-body {
-    padding: 15px;
+    padding: 16px;
+  }
+  
+  .card-title {
+    font-size: 16px;
+  }
+  
+  .form-control {
+    padding: 14px 16px;
+    font-size: 16px; /* Prevents zoom on iOS */
+    min-height: 44px;
+  }
+  
+  .form-label {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+  
+  /* Typography adjustments */
+  h1 { font-size: 1.8rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.3rem; }
+  h4 { font-size: 1.1rem; }
+  
+  /* Spacing adjustments */
+  .container {
+    padding: 0 16px;
+  }
+  
+  /* Grid adjustments */
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* Tablet Styles (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .btn {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+  
+  .card {
+    margin: 12px;
+  }
+  
+  .card-header,
+  .card-body {
+    padding: 18px;
+  }
+  
+  .form-control {
+    padding: 12px 16px;
+    font-size: 15px;
+  }
+  
+  /* Grid adjustments */
+  .grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .container {
+    padding: 0 24px;
+  }
+}
+
+/* Desktop Styles (1024px+) */
+@media (min-width: 1024px) {
+  .btn {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+  
+  .card {
+    margin: 16px;
+  }
+  
+  .card-header,
+  .card-body {
+    padding: 20px;
+  }
+  
+  .form-control {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+  
+  /* Grid adjustments */
+  .grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .container {
+    padding: 0 32px;
+  }
+}
+
+/* Large Desktop Styles (1440px+) */
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+}
+
+/* Utility Classes for Responsive Design */
+.hidden-mobile {
+  display: block;
+}
+
+.hidden-tablet {
+  display: block;
+}
+
+.hidden-desktop {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .hidden-mobile {
+    display: none !important;
+  }
+  
+  .visible-mobile {
+    display: block !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hidden-tablet {
+    display: none !important;
+  }
+  
+  .visible-tablet {
+    display: block !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hidden-desktop {
+    display: none !important;
+  }
+  
+  .visible-desktop {
+    display: block !important;
+  }
+}
+
+/* Responsive Text Sizes */
+.text-responsive {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  .text-responsive {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .text-responsive {
+    font-size: 18px;
+  }
+}
+
+/* Responsive Spacing */
+.spacing-responsive {
+  padding: 16px;
+  margin: 16px 0;
+}
+
+@media (min-width: 768px) {
+  .spacing-responsive {
+    padding: 24px;
+    margin: 24px 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .spacing-responsive {
+    padding: 32px;
+    margin: 32px 0;
+  }
+}
+
+/* Touch-friendly elements */
+.touch-friendly {
+  min-height: 44px;
+  min-width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Responsive Images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.responsive-img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Responsive Tables */
+@media (max-width: 767px) {
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .table-responsive table {
+    min-width: 600px;
+  }
+}
+
+/* Responsive Flexbox Utilities */
+.flex-responsive {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .flex-responsive {
+    flex-direction: row;
+    gap: 24px;
+  }
+}
+
+/* Responsive Grid Utilities */
+.grid-responsive {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .grid-responsive {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-responsive {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+}
+
+/* Landscape Orientation Adjustments */
+@media (max-height: 500px) and (orientation: landscape) {
+  .landscape-adjust {
+    padding: 8px 0;
+  }
+  
+  .landscape-adjust .card {
+    margin: 4px;
+  }
+  
+  .landscape-adjust .card-header,
+  .landscape-adjust .card-body {
+    padding: 12px;
   }
 }
 
