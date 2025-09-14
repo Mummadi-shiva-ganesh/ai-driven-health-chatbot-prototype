@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ai-driven-health-chatbot-prototype/static/css/main.5e9c992a.css",
+    "main.js": "/ai-driven-health-chatbot-prototype/static/js/main.53493731.js",
+    "index.html": "/ai-driven-health-chatbot-prototype/index.html",
+    "main.5e9c992a.css.map": "/ai-driven-health-chatbot-prototype/static/css/main.5e9c992a.css.map",
+    "main.53493731.js.map": "/ai-driven-health-chatbot-prototype/static/js/main.53493731.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5e9c992a.css",
+    "static/js/main.53493731.js"
+  ]
+}
